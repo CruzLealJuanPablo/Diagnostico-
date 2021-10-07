@@ -1,0 +1,91 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package sumas;
+import java.util.Scanner;
+import java.util.Random;
+/**
+ *
+ * @author JuanPablo
+ */
+public class Sumas {
+public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int tope = 0, opt = 0;
+        System.out.println("Ingrese el tamaño de las pilas A y B ");
+        //se declaran las variables principales
+        int a = sc.nextInt();
+        int[] pilaA = new int[a];
+        int[] pilaB = new int[a];
+        int[] pilaC = new int[a];
+        //se declara el menu
+        do {
+            System.out.println("\n1 - Llenar pila A y pila B\n"
+                    + "2 - Mostrar pilas A y B\n"
+                    + "3 - Vaciar pilas A y B\n"
+                    + "4 - Sumar pilas A y B \n"
+                    + "5 - Mostrar pila C\n"
+                    + "6 - Salir\n");
+            switch (opt = sc.nextInt()) {
+                //primer caso para agregar los valores a pilas
+                case 1:
+                    System.out.println("Pilas A y B llenas");
+                    for (int i = 0; i < a; i++) {
+                        //generar numero aleatorio con la funcion de random
+                        pilaA[i] = (int) (Math.random() * 100 + 1);
+                        pilaB[i] = (int) (Math.random() * 100 + 100);
+                        tope++;
+                    }
+                    break;
+                case 2:
+                    //se analiza si hay valores en  las pilas
+                    if (tope > 0) {
+                        System.out.println("\n Pila A");
+                        for (int i = tope - 1; i >= 0; i--) {
+                            System.out.println(" " + pilaA[i]);
+                        }
+                        System.out.println("\n Pila B");
+                        for (int i = tope - 1; i >= 0; i--) {
+                            System.out.println(" " + pilaB[i]);
+                        }
+                    } 
+                    //en caso de no haver valores se muestra el siguiente mensaje 
+                    else {
+                        System.out.println("Pilas A y B vacias, llenar primero.");
+                    }
+                    break;
+                case 3:
+                    // el valor de tope se establece como 0 para vaciar las pilas A y B
+                    System.out.println("Pilas A y B vaciadas.... ");
+                    tope = 0;
+                    break;
+                case 4:
+                    System.out.println("Suma de pilas terminada");
+                    //se establece una variable para llevar la suma de las pilas A y B 
+                    int sum = 0;
+                    //ciclo for para recorrer todos los espacios del tope
+                    for (int i = tope-1; i >= 0; i--) {
+                        //se hace la operacion de suma de las dos pilas A y B 
+                        pilaC[sum] = pilaA[i]+pilaB[i];
+                        sum++;
+                    }                   
+                    break;
+                case 5:    
+                    //muestra solamente contenido de la pila C
+                    if (tope>0){
+                    System.out.println("\n Pila C");
+                    for (int i = tope-1; i >= 0; i--) {
+                        System.out.println(" " + pilaC[i]);
+                    }
+                    }
+                    // si no hay ningun dato en la pila C muestra el siguiente mensaje
+                    else {
+                        System.out.println("Pila C vacia, llenar primero pilas A y B.");
+                    }
+                    break;
+            }
+        } while (opt != 6);
+    }
+}
